@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Comparison</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="codemirror.css" />
+    <link rel="stylesheet" href="compare.css" />
+    <script src="codemirror.js"></script>
+    <script src="diff_match_patch.js"></script>
+    <script src="compare.js"></script>
+    <script>
+        var CompareObj = {
+            o: "o",
+            c: "c",
+            ext: ".js",
+            initObject: function () {
+
+                if (location.href.indexOf("?") == -1 || location.href.indexOf(name + '=') == -1)
+                    return;
+
+                var parameters = location.href.substring(location.href.indexOf("?") + 1).split("&");
+
+                //get compare files path
+                for (var i = 0; i < parameters.length; i++) {
+                    pos = parameters[i].indexOf('=');
+                    if (pos == -1)
+                        return;
+
+                    var paraName = parameters[i].substring(0, pos);
+
+                    if (paraName !== "n")
+                        continue;
+
+                    paraValue = decodeURI(parameters[i].substring(pos + 1));
+                    this.createScriptbyPath(paraValue + "/" + this.o + this.ext, this.o + "_id");
+                    this.createScriptbyPath(paraValue + "/" + this.c + this.ext, this.c + "_id");
+                }
+            },
+
+            createScriptbyPath: function (path, eleid) {
+                //load compare files
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = path;
+                script.id = eleid;
+                if (script.readyState) {
+                    script.onreadystatechange = function () {
+                        if (script.readyState == "loaded" || script.readyState == "complete") {
+                            script.onreadystatechange = null;
+                            CompareObj.compare();
+                        }
+                    };
+                } else {
+                    script.onload = function () {
+                        CompareObj.compare();
+                    };
+                }
+                document.body.appendChild(script);
+            },
+
+            compare: function () {
+
+                if (typeof compareFile !== 'undefined' && typeof orginalFile !== 'undefined'
+					&& typeof compareFile.content !== 'undefined' && typeof orginalFile.content !== 'undefined'
+					&& compareFile != null && orginalFile != null && orginalFile.content != null && compareFile.content != null)
+                    //if ( typeof compareFile !== 'undefined' && typeof orginalFile !== 'undefined' )
+                {
+
+                    var target = document.getElementById("view");
+                    target.innerHTML = "";
+
+                    dv = CodeMirror.MergeView(target, {
+                        value: orginalFile.content,
+                        //origLeft: panes == 3 ? orig1.content : null,
+                        origLeft: null,
+                        orig: compareFile.content,
+                        lineNumbers: true,
+                        mode: "text/html",
+                        highlightDifferences: true,
+                        connect: "align",
+                        collapseIdentical: 1,
+                        revertButtons: false,
+                        allowEditingOriginals: false
+                    });
+                }
+            }
+        }
+
+        window.onload = function () {
+            CompareObj.initObject();
+        };
+    </script>
+</head>
+<body>
+    <div id="view"></div>
+</body>
+
+</html>

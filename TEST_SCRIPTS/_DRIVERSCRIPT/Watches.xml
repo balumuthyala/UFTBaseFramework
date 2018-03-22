@@ -1,0 +1,4 @@
+﻿<Properties>
+  <WatchEntry0 value="Environment(&quot;envProjectName&quot;)" />
+  <WatchEntry1 value="Environment(&quot;envFunctionLibraryFolderPath&quot;)" />
+</Properties>
