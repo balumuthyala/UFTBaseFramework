@@ -1,1 +1,4 @@
-﻿<Properties />
+﻿<Properties>
+  <WatchEntry0 value="QCUtil.IsConnected" />
+  <WatchEntry1 value="Environment(&quot;ProjectFolder&quot;)" />
+</Properties>

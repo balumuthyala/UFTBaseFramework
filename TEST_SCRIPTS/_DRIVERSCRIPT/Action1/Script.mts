@@ -9,8 +9,8 @@ If QCUtil.IsConnected Then
 End If
 
 
-Environment("ProjectName") = "UFTBaseFramework"	'Need to change the project name for different Projects
-TestPath =  Environment("TestDir")
+Environment("ProjectName") = "UFTBaseFramework"  'Need to change the project name for different Projects
+TestPath =  Environment("TestDir")  'It will give the path upto test Action
 Length_TestPath = Len(TestPath)
 StrartPosition_ProjectName = Instr(TestPath, Environment("ProjectName") )
 Environment("ProjectParentFolder") = Mid(TestPath,1,StrartPosition_ProjectName-2)
@@ -74,7 +74,6 @@ For RowNo = 1 to intRowCount
 
     	Environment("TestScenarioName") = Datatable.Value("Test_Name")        
 	Environment("TestCaseName") = Datatable.Value("Action_Name")
-	'	Environment("ActionName") = Datatable.Value("Action_Name")
 	
 	strTestPath = Environment("TestScriptsFolderPath") & "\" & Environment("TestScenarioName")
 	

@@ -1,1 +1,0 @@
-﻿var __testDataSource={items:[{dataFilePath:'Default.xls',dataFileFormat:'excel',dataFileFolder:'F:\\UFT\\UFTBaseFramework\\TEST_SCRIPTS\\CM_Login\\Res1',namePairs:[]}]};

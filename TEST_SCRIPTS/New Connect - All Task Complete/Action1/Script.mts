@@ -8,14 +8,24 @@
 '	Author		:	
 '******************************************************************************************************************************
 
-Set QCConnection = QCUtil.QCConnection    
+
+Environment("ProjectName") = "UFTBaseFramework"	'Need to change the project name for different Projects
+TestPath =  Environment("TestDir")  'It will give the path upto test Action
+Length_TestPath = Len(TestPath)
+StrartPosition_ProjectName = Instr(TestPath, Environment("ProjectName") )
+Environment("ProjectParentFolder") = Mid(TestPath,1,StrartPosition_ProjectName-2)
+Environment("ProjectFolder") = Environment("ProjectParentFolder") & "\" & Environment("ProjectName")
+
+
+'Set QCConnection = QCUtil.QCConnection    
 If QCUtil.IsConnected Then
 	LoadFunctionLibrary "[QualityCenter\Resources] Resources\Subject\Active\Century\SIP\FUNCTION_LIBRARY\" & "Environment_Functions"
 	LoadFunctionLibrary "[QualityCenter\Resources] Resources\Subject\Active\Century\SIP\FUNCTION_LIBRARY\" & "FW_Functions"
 ElseIf Not QCUtil.IsConnected Then
-	LoadFunctionLibrary "C:\UFT_BaseFramework\FUNCTION_LIBRARY\Environment_Functions.qfl"	
-	LoadFunctionLibrary "C:\UFT_BaseFramework\FUNCTION_LIBRARY\FW_Functions.qfl"	
+	LoadFunctionLibrary Environment("ProjectFolder")&"\FUNCTION_LIBRARY\Environment_Functions.qfl"	
+	LoadFunctionLibrary Environment("ProjectFolder")&"\FUNCTION_LIBRARY\FW_Functions.qfl"	
 End If
+
 
 Call fn_StartTestCaseExecution() 	'Mandatory for all Actions
 

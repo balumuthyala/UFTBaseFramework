@@ -1,0 +1,28 @@
+
+Test Scenario =  UFT Test
+Test Case = UFT Action
+
+Create many Actions under 1 Test based on the manual scenarios & cases
+
+Maintain the Test Case flow in UFT Action by using Application related Functions.
+
+Define all project related paths and global related things in Environment_Functions Function Library
+
+Place all Framework related Functions in FW_Functions Function Library which can be reusable to any other projects
+
+Place all Application related Functions in Application Function Library based on the Application name
+
+One Excel Workbook for one Test Scenario / UFT Test
+Excel Workbook name should be UFT Test Name
+One Excel Sheet for one Test Case/ UFT Action
+Excel Sheet name should be UFT Action Name
+
+Test data column names shoul not have any spaces in between
+For batch execution, use DriverScript under Test_Scripts & set the execution flag "Yes" to execute the cases in DriversSheet under Driver_Sheet
+
+
+
+This Framework will generate only HTML reports under C: drive.
+If you want to get Excel & HTML reports, refer "ApolloDemo" project.
+
+If you want to use Automation Object Model (AOM), execute the AOM files under Vbs_Files. These VBS files will be useful to Jenkins execution also.
