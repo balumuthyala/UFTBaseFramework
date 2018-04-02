@@ -36,9 +36,9 @@ Call fn_CM_LaunchURL()
 
 'CM Login
 strUsername = fn_GetTestdata("CM_Username",2) 
-strPassword = fn_GetTestdata("CM_Password",2) 
+'strPassword = fn_GetTestdata("CM_Password",2) 
 strDomain = fn_GetTestdata("CM_Domain",2) 
-'Call fn_CM_Login(strUsername, strPassword, strDomain)
+Call fn_CM_Login(strUsername, strPassword, strDomain)
 
 
 Call fn_WriteTestCaseReport() 	'Mandatory for all Actions
