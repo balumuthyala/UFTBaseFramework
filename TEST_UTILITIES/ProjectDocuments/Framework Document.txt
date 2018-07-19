@@ -1,6 +1,6 @@
 
-Test Scenario =  UFT Test
-Test Case = UFT Action
+1 Test Scenario =  1 UFT Test
+1 Test Case = 1 UFT Action
 
 Create many Actions under 1 Test based on the manual scenarios & cases
 
